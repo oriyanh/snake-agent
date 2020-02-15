@@ -25,7 +25,7 @@ def vectorize_state(state):
                                    flat_board]).astype(np.float)
     return state_vector[np.newaxis, ...]
 
-@tf.function
+# @tf.function
 def train_step(model, reward, prev_state, next_state, gamma):
     prev_Q = model.predict(prev_state)
     with tf.GradientTape() as tape:
@@ -65,8 +65,7 @@ class Linear(bp.Policy):
                 self.r_sum = 0
             else:
                 self.r_sum += reward
-
-            batch = np.random.choice(self.state_buffer, self.batch_size)
+            batch = np.random.permutation(self.state_buffer)[:self.buffer_size]
             self.log("training")
             train_step(self.Q, reward, batch[..., 0], batch[..., 1], self.gamma)
 
@@ -76,7 +75,7 @@ class Linear(bp.Policy):
 
     def act(self, round, prev_state, prev_action, reward, new_state, too_slow):
         if too_slow:
-            self.log("too slow, returning random choice")
+            self.log(f"too slow, returning random choice. Round #{round}")
             return np.random.choice(bp.Policy.ACTIONS)
         if np.random.rand() < self.epsilon:
             self.log("returning random choice")
@@ -92,6 +91,9 @@ class Linear(bp.Policy):
                 self.state_buffer[-1] = (prev_state_vector, new_state_vector)
             else:
                 self.state_buffer.append((prev_state_vector, new_state_vector))
+        if round < 50:
+            self.log(f"Low round, returning random choice. Round #{round}")
+            return np.random.choice(bp.Policy.ACTIONS)
         self.log("predicting")
         pred = self.Q.predict(new_state_vector)
         action = bp.Policy.ACTIONS[np.argmax(pred)]
