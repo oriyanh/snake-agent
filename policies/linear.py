@@ -27,9 +27,9 @@ def vectorize_state(state):
 
 @tf.function
 def train_step(model, reward, prev_state, next_state, gamma):
-    prev_Q = model.predict(vectorize_state(prev_state))
+    prev_Q = model.predict(prev_state)
     with tf.GradientTape() as tape:
-        new_Q = model.predict(vectorize_state(next_state))
+        new_Q = model.predict(next_state)
         loss = loss_op(prev_Q, reward + gamma * new_Q)
     grads = tape.gradient(loss, model.trainable_variables)
     optimizer.apply_gradients(grads, model.trainable_variables)
