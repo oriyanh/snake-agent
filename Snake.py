@@ -14,6 +14,7 @@ import scipy.signal as ss
 
 from policies import base_policy
 from policies import *
+from viewer import GameViewer
 
 EMPTY_VAL = -1
 MAX_PLAYERS = 5
@@ -244,6 +245,10 @@ class Game(object):
                     self.board[new_pos[0], new_pos[1]] = OBSTACLE_VAL
             self.item_count += size
 
+        if self.visualize:
+            # init viewer:
+            self.viewer = GameViewer(self.board)
+
         # initialize players:
         self.rewards, self.players, self.scores, self.directions, self.actions, self.growing, self.size, self.chains, self.previous_heads = \
             [], [], [], [], [], [], [], [], []
@@ -280,7 +285,9 @@ class Game(object):
         self.record = self.record_to is not None
 
         # wait for player initialization (Keras loading time):
+        print("Waiting for init...")
         time.sleep(self.player_init_time)
+        print("Done waiting")
 
 
     def init_player(self):
@@ -398,6 +405,12 @@ class Game(object):
         self.randomize()
         self.round += 1
 
+    def view_board(self, r):
+        title = f"Time Step: {str(r)}/{str(self.game_duration)}"
+        for i in range(len(self.scores)):
+            scope = np.min([len(self.scores[i]), self.score_scope])
+            title += f"\nPlayer {str(i + 1)}: {np.mean(self.scores[i][-scope:]):.4f}"
+        self.viewer.update(self.board, title)
 
     def render(self, r):
 
@@ -436,6 +449,9 @@ class Game(object):
                         for i, s in enumerate(self.scores):
                             scope = np.min([len(self.scores[i]), self.score_scope])
                             print("Player " + str(i + 1) + ": " + str(str("{0:.4f}".format(np.mean(self.scores[i][-scope:])))))
+                if self.visualize:
+                    if not (self.is_playback and (r < self.playback_initial_round or r > self.playback_final_round)):
+                        self.view_board(r)
                 if self.is_playback:
                     try:
                         idx, vals, self.scores = pickle.load(self.archive)
@@ -453,7 +469,6 @@ class Game(object):
                         idx = np.nonzero(self.board - prev != 0)
                         pickle.dump((idx, self.board[idx], self.scores), self.archive)
         finally:
-
             if self.record or self.is_playback:
                 self.archive.close()
 
@@ -492,6 +507,7 @@ def parse_args():
     g.add_argument('--to_render', '-r', type=int, default=0, help="whether game should not be rendered")
     g.add_argument('--render_rate', '-rr', type=float, default=0.1,
                    help='frames per second, note that the policy_wait_time bounds on the rate')
+    g.add_argument('--visualize', '-v', action='store_true', help="enable visualization")
 
     g = p.add_argument_group('Game')
     g.add_argument('--board_size', '-bs', type=str, default='(20,60)', help='a tuple of (height, width)')

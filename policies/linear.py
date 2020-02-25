@@ -52,6 +52,7 @@ class Linear(bp.Policy):
         self.r_sum = 0
         self.state_buffer = []
         self.Q = QEstimator(len(bp.Policy.ACTIONS))
+        self.Q.compile(optimizer, loss_op)
 
     def learn(self, round, prev_state, prev_action, reward, new_state, too_slow):
 
@@ -67,7 +68,7 @@ class Linear(bp.Policy):
                 self.r_sum += reward
             batch = np.random.permutation(self.state_buffer)[:self.buffer_size]
             self.log("training")
-            train_step(self.Q, reward, batch[..., 0], batch[..., 1], self.gamma)
+            train_step(self.Q, reward, vectorize_state(prev_state), vectorize_state(new_state), self.gamma)
 
         except Exception as e:
             self.log("Something Went Wrong...", 'EXCEPTION')
@@ -102,7 +103,7 @@ class Linear(bp.Policy):
 
 def QEstimator(num_actions):
     model = Sequential()
-    model.add(Dense(num_actions, activation='softmax'))
+    model.add(Dense(num_actions))
     return model
     # class QEstimator(Model):
     #
