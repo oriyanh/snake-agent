@@ -12,11 +12,11 @@ from tensorflow.keras.layers import Dense, Flatten
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-EPSILON = 0.1
+EPSILON = 0.05
 MAX_BUFFER_SIZE = 256
 GAMMA = 0.01
-LEARNING_RATE = 0.5
-MAX_BATCH_SIZE = 32
+LEARNING_RATE = 0.01
+MAX_BATCH_SIZE = 16
 directions_indices = {k: i for i, k in enumerate(bp.Policy.TURNS)}
 action_indices = {k: i for i, k in enumerate(bp.Policy.ACTIONS)}
 
@@ -113,6 +113,10 @@ class Linear(bp.Policy):
         # return self.update_state_buffer(new_state, reward)
         if prev_state is not None and prev_action is not None:
             self.update_state_buffer2(prev_state, prev_action, reward)
+            if prev_action in ("L", "R"):
+                sym_state, sym_action = get_symmetric_state(prev_state, prev_action)
+                self.update_state_buffer2(sym_state, sym_action, reward)
+
         pred = self.Q.predict(vectorize_state(new_state)[np.newaxis, ...]).flatten()
         return pred
 
@@ -139,10 +143,18 @@ class Linear(bp.Policy):
         self.state_buffer.append(state_vec)
         self.target_buffer.append(target)
 
+def get_symmetric_state(state, action):
+    sym_action = "L" if action is "R" else "R"
+    idx_orig = action_indices[sym_action]
+    idx_sym = action_indices[sym_action]
+    sym_state = np.array(state)
+    sym_state[idx_orig], sym_state[idx_sym] = state[idx_sym], state[idx_orig]
+    return sym_state, sym_action
+
+
 def QEStimator(num_actions, lr):
     model = Sequential()
-    # model.add(Dense(num_actions))
-    model.add(Dense(num_actions, activation='softmax'))
+    model.add(Dense(num_actions))
     model.compile(loss='mean_squared_error',
                   optimizer=keras.optimizers.Adam(lr))
     return model
