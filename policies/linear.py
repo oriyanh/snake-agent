@@ -13,14 +13,14 @@ from tensorflow.keras.layers import Dense, Flatten
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 EPSILON = 0.05
-MAX_BUFFER_SIZE = 256
+MAX_BUFFER_SIZE = 128
 GAMMA = 0.01
 LEARNING_RATE = 0.01
-MAX_BATCH_SIZE = 16
+MAX_BATCH_SIZE = 8
 directions_indices = {k: i for i, k in enumerate(bp.Policy.TURNS)}
 action_indices = {k: i for i, k in enumerate(bp.Policy.ACTIONS)}
 
-def vectorize_state(state):
+def get_state(state):
     board, head = state
     head_pos, direction = head
     vec = np.zeros(3)
@@ -29,17 +29,8 @@ def vectorize_state(state):
         vec[i] = board[new_pos[0], new_pos[1]]
     return vec[np.newaxis, ...]
 
-def get_state_tuple(model, state, reward, gamma):
-    state_vector = vectorize_state(state)
-    Q = model.predict(state_vector[np.newaxis, ...]).flatten()
-    Q_max_arg = np.argmax(Q)
-    Q_max_val = np.max(Q)
-    target = np.array(Q)
-    target[Q_max_arg] = reward + gamma * Q_max_val
-    return state_vector, Q, target
-
-def get_state_tuple2(model, state, action, reward, gamma):
-    state_vector = vectorize_state(state)
+def get_state_tuple(model, state, action, reward, gamma):
+    state_vector = get_state(state)
     Q = model.predict(state_vector[np.newaxis, ...]).flatten()
     Q_max_arg = action_indices[action]
     Q_max_val = Q[Q_max_arg]
@@ -99,41 +90,28 @@ class Linear(bp.Policy):
             self.log(e, 'EXCEPTION')
 
     def act(self, round, prev_state, prev_action, reward, new_state, too_slow):
-        if too_slow:
-            return np.random.choice(bp.Policy.ACTIONS)
-        if np.random.rand() < self.epsilon:
+        if prev_state is not None and prev_action is not None:
+            self.update_state_buffer(prev_state, prev_action, reward)
+            if prev_action in ("L", "R"):
+                sym_state, sym_action = get_symmetric_state(prev_state, prev_action)
+                self.update_state_buffer(sym_state, sym_action, reward)
+
+        if np.random.rand() < self.epsilon or too_slow or round < 100:
             return np.random.choice(bp.Policy.ACTIONS)
 
-        pred = self.predict(prev_state, prev_action, new_state, reward)
+        pred = self.predict(new_state)
         action = bp.Policy.ACTIONS[np.argmax(pred)]
 
         return action
 
-    def predict(self, prev_state, prev_action, new_state, reward):
-        # return self.update_state_buffer(new_state, reward)
-        if prev_state is not None and prev_action is not None:
-            self.update_state_buffer2(prev_state, prev_action, reward)
-            if prev_action in ("L", "R"):
-                sym_state, sym_action = get_symmetric_state(prev_state, prev_action)
-                self.update_state_buffer2(sym_state, sym_action, reward)
+    def predict(self, new_state):
 
-        pred = self.Q.predict(vectorize_state(new_state)[np.newaxis, ...]).flatten()
+        pred = self.Q.predict(get_state(new_state)[np.newaxis, ...]).flatten()
         return pred
 
-    def update_state_buffer(self, new_state, reward):
-        state_vec, pred, target = get_state_tuple(self.Q, new_state, reward, self.gamma)
 
-        if len(self.state_buffer) >= self.buffer_size:
-            self.state_buffer = np.roll(self.state_buffer, -1).tolist()
-            self.state_buffer.pop()
-            self.target_buffer = np.roll(self.target_buffer, -1).tolist()
-            self.target_buffer.pop()
-        self.state_buffer.append(state_vec)
-        self.target_buffer.append(target)
-        return pred
-
-    def update_state_buffer2(self, prev_state, prev_action, reward):
-        state_vec, target = get_state_tuple2(self.Q, prev_state, prev_action, reward, self.gamma)
+    def update_state_buffer(self, prev_state, prev_action, reward):
+        state_vec, target = get_state_tuple(self.Q, prev_state, prev_action, reward, self.gamma)
 
         if len(self.state_buffer) >= self.buffer_size:
             self.state_buffer = np.roll(self.state_buffer, -1).tolist()
