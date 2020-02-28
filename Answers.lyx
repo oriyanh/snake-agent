@@ -1,0 +1,2589 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin "D:/Oriyan/School/HUJI PDF/67750 - Advanced Practical Machine Learning/snake/"
+\textclass heb-article
+\begin_preamble
+\usepackage{mnsymbol}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5cm
+\topmargin 2cm
+\rightmargin 1.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "D:/Oriyan/School/HUJI PDF/shortcuts.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+\series bold
+פרויקט
+\family roman
+\shape up
+\size largest
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Reinforcement Learning
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- סדנה מתקדמת בלמידה חישובית מעשית
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+67652
+\end_layout
+
+\begin_layout Author
+אוריין חרמוני
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+302170204
+\end_layout
+
+\begin_layout Date
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+הערות
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+יצוג הלוח 
+\series default
+- עבור שני הסוכנים, בחרתי לייצג את הלוח באמצעות וקטור באורך
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המייצג את הפרס המיידי בכל אחד המהלכים האפשריים , למשל המצב 
+\begin_inset Formula $(5,0,-10)$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מייצג מצב בו אם הנחש יפנה שמאלה הוא ירוויח
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+5
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נקודות, ימשיך ישר ירוויח
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נקודות, ויפנה ימינה הוא יפסיד
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+10
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נקודות.
+ בחרתי לייצג כך את מצב המשחק כיוון שזהו היצוג המינימלי ביותר שעבד תחת אילוצי
+ הזמנים של הקלאסטר, כל יצוג אחר )וכל חישוב נוסף שהייתי צריך לבצע כדי לעבור
+ למרחב מצבים קטן יותר( עלה הרבה מבחינת זמני ריצה.
+ ניסיתי יצוג של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+4
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+וקטור שמייצג את הערך הממוצע של תזוזה ימינה/שמאלה/למעלה/למטה , ניסיתי לשטח
+ את לוח המשחק , עבור הסוכן המיוחד ניסיתי גם לשרשר את הלוח הקודם ואת הלוח
+ הנוכחי כדי לעבוד עם שכבות קונבולוציה שיוצרות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+field of view
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+גדול יותר אך זה דרש יותר מדי זמן לעבור דרך רשת הנוירונים.
+ לכן בחרתי את היצוג המינימלי הנ"ל, וראיתי כי אכן ניתן ללמוד איתו אך לא ביעילות.
+ הביצועים על הקלאסטר היו כל כך גרועים )גם בבחירה חכמה של הקלאסטר לפי המייל
+ שעמרי שלח לפני מספר ימים( שהתחברות ב
+\lang english
+ssh
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ למכונה רגילה והרצה עליה הייתה עם פחות 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+timeouts
+\lang hebrew
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+על מצב ופעולה אפשרית הוספתי גם את המצב הסימטרי - כלומר אם במצב 
+\begin_inset Formula $(5,0,-10)$
+\end_inset
+
+ המהלך האידאלי הוא תזוזה שמאלה , אזי המצב הסימטרי הוא 
+\begin_inset Formula $(-10,0,5)$
+\end_inset
+
+ והמהלך האידאלי הוא תזוזה ימינה .
+ הפרס של הסוכן זהה בשני המקרים.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+כמו שציינתי הקלאסטר היה בעייתי, עד מצב שהרבה פעמים הוא זרק אותי בזמן שחיכיתי
+ למשאבים ואמר שאין מכונות פנויות )הוא הפנה אותי למכונות שונות מההגדרות ששמתי
+ בגלל שהמכונות שהקציתם לנו היו תפוסות, אבל גם המכונות האחרות היו תפוסות
+ והוא פשוט זרק אותי כי אין עליהן טנזורפלואו שמקומפל עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+SSE
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+שלא תואם את המכונה - למשל חיבר אותי הרבה פעמים ל
+\lang english
+sulfur
+\lang hebrew
+(.
+ לכן הרבה פעמים הייתי צריך להריץ על מכונה רגילה , מה שעלה לי בהרבה זמן יקר
+ שיכולתי להשקיע בדיבוג.
+ בנוסף, גם עם בחירת מכונות ספציפיות מתוך סדרת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+sm
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ אני מוקצה למכונות אחרות, איטיות יותר )למשל 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+sm-2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+שלוקח לה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+17
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+דקות להריץ סוכן לינארי( .
+ 
+\end_layout
+
+\begin_layout Section
+סוכן לינארי
+\end_layout
+
+\begin_layout Standard
+עבור סוכן זה בחרתי לממש רשת נוירונים עם שכבת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Dense
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+בודדת , ללא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אקטיבציה בסוף כיוון שפלט הרשת מייצג את ערך טבלת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Q
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואין אנו מחשבים את ההסתברות לבחור פעולה אלא את הערך שלה.
+ עדכון הטבלה התבצע לפי הנוסחא הבאה )שנלקחה מההרצאה של שש"ש(:
+\begin_inset Formula 
+\[
+Q_{t+1}\left(s,a\right)=Q\left(s_{t},a_{t}\right)-\alpha\left(r_{t}+\gamma\underset{a'\in A}{\max}Q\left(s_{t+1},a'\right)\right)
+\]
+
+\end_inset
+
+ כאשר 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ הוא קצב הלמידה ו 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ הוא ה
+\begin_inset Formula $discount\,factor$
+\end_inset
+
+ .
+ 
+\end_layout
+
+\begin_layout Standard
+ניסיתי לבנות מודלים בכמה שיטות שונות , פעם באמצעות בניית מודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Sequential
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של קראס )בשיטה זו בחרתי לבסוף(, פעם באמצעות יצירת מחלקה היורשת מ
+\lang english
+Keras.Model
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+וכתיבת פונ' אימון מיוחדת , ופעם נוספת על ידי עדכון ידני של טבלת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+numpy
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המייצגת את טבלת ה
+\lang english
+Q
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ שתי השיטות האחרונות הניבו ביצועים ירודים למדי )במיוחד לאחרונה היו ביצועים
+ די מחרידים, למרות שמבחינת משאבים היא דרשה הכי פחות מהמערכת(.
+ פונ' ההפסד בה השתמשתי כדי לקרב אותה היא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+MSE
+\lang hebrew
+.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ב
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+50
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הסיבובים הראשונים בחרתי לעשות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+exploration
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של הלוח כדי להכיר אותו כמה שיותר .
+ גיליתי שיותר סיבובים מכך הסוכן יכול באותה מידה תמיד לבחור פעולה באקראי
+ , ופחות מכך לא משפיע במיוחד על פעולת הסוכן כיוון שלקלאסטרים לוקח המון זמן
+ לטעון את המודל וכל פעולת פרדיקציה לא תסתיים בזמן.
+\end_layout
+
+\begin_layout Standard
+עשיתי חיפוש פרמטרים יסודי , וגיליתי ש 
+\begin_inset Formula $batches$
+\end_inset
+
+ בגודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+8
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הם הגודל המקסימלי שמאפשר למודל ללמוד ללא הפרת פרמטרים של זמנים , קצב למידה
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.01
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+)אופטימייזר אדאם(, גודל 
+\begin_inset Formula $replay\,buffer$
+\end_inset
+
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+128
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מצבים,
+\begin_inset Formula $discount\,factor$
+\end_inset
+
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.01
+\numeric off
+ , ואפסילון )אחוז המהלכים האקראיים(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.05
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+סוכן זה 
+\end_layout
+
+\begin_layout Standard
+דוגמא להרצה שבה הסוכן הפסיד: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename example1_linear.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+במקרה זה סוכן
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הוא הסוכן שלי , סוכנים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2-5
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הם סוכני
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Avoid
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם אפסילונים 
+\begin_inset Formula $P2=0,P3=0.05,P4=0.1,P5=0.2$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+דוגמא נוספת להרצה שבה הסוכן ניצח מול אותם סוכנים: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename example2_linear.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+בריצה של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+5000
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+סיבובים הסוכן נמצא רוב הזמן עם פרס שלילי אך עולה מונוטונית , כאשר בכמה מאות
+ הסיבובים האחרונים הפרס נהיה חיובי.
+ אף פעם לא הצלחתי לנצח את
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+P2/P3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אך התקרבתי מאוד לניקוד שלהם רוב הזמן, ובערך חצי מהזמן אני מנצח את
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+P4
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+P5
+\lang hebrew
+.
+\end_layout
+
+\begin_layout Section
+סוכן מיוחד
+\end_layout
+
+\begin_layout Standard
+עבור סוכן זה בחרתי גם לממש רשת נוירונים , ללא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אקטיבציה בסוף כיוון שפלט הרשת מייצג את ערך טבלת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Q
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואין אנו מחשבים את ההסתברות לבחור פעולה אלא את הערך שלה.
+ עדכון הטבלה התבצע לפי אותה נוסחא כמו בסוכן הלינארי ואותה פונ' הפסד.
+ ניסיתי כאן כמה ארכיטקטורות שונות, שכל אחת מהן הניבה תוצאות פחות מזהירות
+ )כמעט תמיד נגמר בפרס ממוצע של כ
+\begin_inset Formula $-1.3$
+\end_inset
+
+ , כל כך נמוך שזה נראה כאילו הרשתות לומדות רק את המהלכים ה
+\series bold
+לא נכונים 
+\series default
+(.
+ הארכיטקטורה אותה בחרתי לבסוף היא:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+Dense256ReLU\\
+\ra Conv2D16Ch & (stride1,kernel3x3)\\
+\ra Conv2D32Ch & (stride1,kernel5x5)\\
+\ra Dense256ReLU\\
+\ra Dense\left(NUM\_ACTIONS\right)Softmax
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ניסיתי כאן כמה ארכיטקטורות שונות, שכל אחת מהן הניבה תוצאות פחות מזהירות
+ )כמעט תמיד נגמר בפרס ממוצע של כ
+\begin_inset Formula $-1.3$
+\end_inset
+
+ , כל כך נמוך שזה נראה כאילו הרשתות לומדות רק את המהלכים ה
+\series bold
+לא נכונים 
+\series default
+(.
+ 
+\end_layout
+
+\begin_layout Standard
+ארכיטקטורה נוספת שניסיתי )אותה מצאתי באינטרנט אחרי המון נסיונות נואשים לבנות
+ ארכיטקטורה משלי( :
+\begin_inset Formula 
+\begin{align*}
+Dense120ReLU\ra Dropout\left(0.15\right)\\
+\ra Dense120ReLU\ra Dropout\left(0.15\right)\\
+\ra Dense120ReLU\ra Dropout\left(0.15\right)\\
+\ra Dense\left(NUM\_ACTIONS\right) & (both\,with\,softmax\,activation\,and\,no\,activation)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+הבחירה לממש באמצעות רשת נוירונים את סעיף זה נבעה בעיקר מקוצר בזמנים , התחלתי
+ מאוחר יחסית את הפרויקט ולא נשאר לי מספיק זמן כדי לנסות פתרונות ושיטות אחרות
+ .
+ ניצלתי את העובדה שכתבתי תשתית שעובדת במקרה הלינארי והרחבתי את הרשת לארכיטקטורה
+ עמוקה יותר ו )בתקווה( יותר חכמה.
+ הבחירה החכמה ליצוג מצב הלוח הייתה להשתמש בלוח השלם ולהכניסו ישר לרצף של
+ שכבות קונבולוציה )כדי לקבל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+field of view
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+גדול ע"מ לקבל החלטות חכמות יותר( אך זה גרר קשיים מבחינת ביצועים על הקלאסטר.
+\end_layout
+
+\begin_layout Standard
+לצערי, לא הגעתי למצב שבו הסוכן שלי מצליח ללמוד כמו שצריך עם אף ארכיטקטורה
+ , כנראה בגלל שילוב של מרחב המצבים דל , ארכיטקטורה והיפר פרמטרים לא מתאימים,
+ וזמני ריצה חריגים.
+ כאשר הרצתי את הסוכנים שלי מול עצמם הם תמיד סיימו עם ערכים חיוביים , כלומר
+ כולם הצליחו ללמוד בהצלחה רוב הזמן )זה נכון עם כמעט כל היפר פרמטר שניסיתי(
+ , אך הם לא הצליחו להתמודד עם סוכני
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Avoid
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+משום מה )אפילו עם סוכנים בעלי אפסילון גבוה מ
+\numeric on
+0.2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+היו מנצחים אותם הרבה(.
+ לכן אני מכתיר את הסוכן המיוחד שלי בתור כישלון חרוץ , כיוון שלא עמדתי בתנאים
+ של ההגשה :) אציין לעומת זאת כי הסוכנים רובם ככולם כן מצליחים ללמוד באופן
+ כלשהו, וכי ניתן לראות בפלט שלהם כי הפרס הממוצע במגמת עליה לאורך כל הריצה
+ אך העליה כל כך מינורית שהפרס שלהם תמיד שלילי .
+\end_layout
+
+\begin_layout Standard
+ב
+\numeric on
+50
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הסיבובים הראשונים בחרתי לעשות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+exploration
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של הלוח כדי להכיר אותו כמה שיותר .
+ גיליתי שיותר סיבובים מכך הסוכן יכול באותה מידה תמיד לבחור פעולה באקראי
+ , ופחות מכך לא משפיע במיוחד על פעולת הסוכן כיוון שלקלאסטרים לוקח המון זמן
+ לטעון את המודל וכל פעולת פרדיקציה לא תסתיים בזמן.
+\end_layout
+
+\begin_layout Standard
+עשיתי חיפוש פרמטרים , הבחירה הכי מוצלחת שמצאתי היא של 
+\begin_inset Formula $batches$
+\end_inset
+
+ בגודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+16
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הם הגודל המקסימלי שמאפשר למודל ללמוד ללא הפרת פרמטרים של זמנים , קצב למידה
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.0005
+\numeric off
+ )אופטימייזר אדאם(, גודל 
+\begin_inset Formula $replay\,buffer$
+\end_inset
+
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+128
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מצבים,
+\begin_inset Formula $discount\,factor$
+\end_inset
+
+ של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.9
+\numeric off
+ , ואפסילון )אחוז המהלכים האקראיים(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0.1
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+ריצה של הסוכן שלי מול סוכני
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+Avoid
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם אפסילונים 
+\begin_inset Formula $P2=0,P3=0.05,P4=0.1,P5=0.2$
+\end_inset
+
+ )למשך
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+50000
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+סיבובים(:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename example1_custom.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ריצה זו יחסית מוצלחת באופן מפתיע, אך זהו
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+outlier
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ובדרך כלל המודל שלי מקבל ערכים בין 
+\begin_inset Formula $-1.3$
+\end_inset
+
+ ל
+\begin_inset Formula $-1.4$
+\end_inset
+
+ .
+ לא צירפתי ריצות נוספות כיוון שזה היה חסר פואנטה , כולן תמיד מפסידות ...
+ *הכנס סמיילי עצוב נוסף*
+\end_layout
+
+\end_body
+\end_document
