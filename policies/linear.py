@@ -14,29 +14,11 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 EPSILON = 0.05
 MAX_BUFFER_SIZE = 128
-GAMMA = 0.01
+GAMMA = 0.1
 LEARNING_RATE = 0.01
-MAX_BATCH_SIZE = 8
+MAX_BATCH_SIZE = 16
 directions_indices = {k: i for i, k in enumerate(bp.Policy.TURNS)}
 action_indices = {k: i for i, k in enumerate(bp.Policy.ACTIONS)}
-
-def get_state(state):
-    board, head = state
-    head_pos, direction = head
-    vec = np.zeros(3)
-    for i, a in enumerate(bp.Policy.ACTIONS):
-        new_pos = head_pos.move(bp.Policy.TURNS[direction][a])
-        vec[i] = board[new_pos[0], new_pos[1]]
-    return vec[np.newaxis, ...]
-
-def get_state_tuple(model, state, action, reward, gamma):
-    state_vector = get_state(state)
-    Q = model.predict(state_vector[np.newaxis, ...]).flatten()
-    Q_max_arg = action_indices[action]
-    Q_max_val = Q[Q_max_arg]
-    target = np.array(Q)
-    target[Q_max_arg] = reward + gamma * Q_max_val
-    return state_vector, target
 
 class Linear(bp.Policy):
     """
@@ -78,7 +60,7 @@ class Linear(bp.Policy):
                 self.slow_counter = 0
             else:
                 self.slow_counter += 1
-                if self.slow_counter > 10:
+                if self.slow_counter > 10:  # try to increase batch size
                     self.batch_size = int(min((MAX_BATCH_SIZE, self.batch_size * 2)))
             if self.state_buffer and self.target_buffer:
                 self.Q.fit(np.asarray(self.state_buffer),
@@ -96,7 +78,7 @@ class Linear(bp.Policy):
                 sym_state, sym_action = get_symmetric_state(prev_state, prev_action)
                 self.update_state_buffer(sym_state, sym_action, reward)
 
-        if np.random.rand() < self.epsilon or too_slow or round < 100:
+        if np.random.rand() < self.epsilon or too_slow or round < 50:
             return np.random.choice(bp.Policy.ACTIONS)
 
         pred = self.predict(new_state)
@@ -120,6 +102,24 @@ class Linear(bp.Policy):
             self.target_buffer.pop()
         self.state_buffer.append(state_vec)
         self.target_buffer.append(target)
+
+def get_state(state):
+    board, head = state
+    head_pos, direction = head
+    vec = np.zeros(3)
+    for i, a in enumerate(bp.Policy.ACTIONS):
+        new_pos = head_pos.move(bp.Policy.TURNS[direction][a])
+        vec[i] = board[new_pos[0], new_pos[1]]
+    return vec[np.newaxis, ...]
+
+def get_state_tuple(model, state, action, reward, gamma):
+    state_vector = get_state(state)
+    Q = model.predict(state_vector[np.newaxis, ...]).flatten()
+    Q_max_arg = action_indices[action]
+    Q_max_val = Q[Q_max_arg]
+    target = np.array(Q)
+    target[Q_max_arg] = reward + gamma * Q_max_val
+    return state_vector, target
 
 def get_symmetric_state(state, action):
     sym_action = "L" if action is "R" else "R"
